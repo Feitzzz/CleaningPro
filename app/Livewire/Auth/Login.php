@@ -33,17 +33,18 @@ class Login extends Component
         $this->ensureIsNotRateLimited();
 
         if (! Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
-            RateLimiter::hit($this->throttleKey());
-
-            throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
-            ]);
+            $this->addError('email', __('auth.failed'));
+            return;
         }
 
-        RateLimiter::clear($this->throttleKey());
-        Session::regenerate();
-
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        $user = Auth::user();
+        if ($user->user_type === 'cleaner') {
+            $this->redirect(route('cleanerdashboard', absolute: false), navigate: true);
+        } elseif ($user->user_type === 'recruiter') {
+            $this->redirect(route('recruiterdashboard', absolute: false), navigate: true);
+        } else {
+            $this->redirect(route('dashboard', absolute: false), navigate: true);
+        }
     }
 
     /**

@@ -26,6 +26,16 @@
             placeholder="email@example.com"
         />
 
+        <!-- User Type -->
+        <div>
+            <label for="user_type" class="block text-sm font-medium text-gray-700">{{ __('Register as') }}</label>
+            <select id="user_type" wire:model="user_type" class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-white text-black">
+                <option value="cleaner">{{ __('Cleaner') }}</option>
+                <option value="recruiter">{{ __('Recruiter') }}</option>
+            </select>
+            @error('user_type') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+        </div>
+
         <!-- Password -->
         <flux:input
             wire:model="password"
