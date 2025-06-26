@@ -41,6 +41,22 @@ class Register extends Component
 
         Auth::login($user);
 
-        $this->redirect(route('dashboard', absolute: false), navigate: true);
+        // Create recruiter or cleaner profile
+        if ($user->user_type === 'recruiter') {
+            \App\Models\Recruiter::create([
+                'user_id' => $user->id,
+                'company_name' => $user->name . "'s Company",
+            ]);
+            $this->redirect(route('recruiterdashboard', absolute: false), navigate: true);
+        } elseif ($user->user_type === 'cleaner') {
+            \App\Models\Cleaner::create([
+                'user_id' => $user->id,
+                'phone' => null,
+                'address' => null,
+            ]);
+            $this->redirect(route('cleanerdashboard', absolute: false), navigate: true);
+        } else {
+            $this->redirect(route('dashboard', absolute: false), navigate: true);
+        }
     }
 }

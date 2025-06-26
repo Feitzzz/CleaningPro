@@ -40,10 +40,16 @@ class Login extends Component
         $user = Auth::user();
         if ($user->user_type === 'cleaner') {
             $this->redirect(route('cleanerdashboard', absolute: false), navigate: true);
+            echo "<script>window.location.href = '" . route('cleanerdashboard', [], false) . "';</script>";
+            exit;
         } elseif ($user->user_type === 'recruiter') {
             $this->redirect(route('recruiterdashboard', absolute: false), navigate: true);
+            echo "<script>window.location.href = '" . route('recruiterdashboard', [], false) . "';</script>";
+            exit;
         } else {
             $this->redirect(route('dashboard', absolute: false), navigate: true);
+            echo "<script>window.location.href = '" . route('dashboard', [], false) . "';</script>";
+            exit;
         }
     }
 

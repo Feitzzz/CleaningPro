@@ -3,6 +3,9 @@
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
+use App\Livewire\Recruiter\JobManager;
+use App\Livewire\Recruiter\AssignJob;
+use App\Livewire\Cleaner\WithdrawEarnings;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,6 +29,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/recruiterdashboard', function () {
         return view('recruiterdashboard');
     })->name('recruiterdashboard');
+
+    Route::get('/recruiter/jobs', JobManager::class)->name('recruiter.jobs');
+    Route::get('/recruiter/assign-job', AssignJob::class)->name('recruiter.assign-job');
+    Route::get('/cleaner/withdraw', WithdrawEarnings::class)->name('cleaner.withdraw');
 });
 
 Route::get('/about', function () {

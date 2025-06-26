@@ -11,8 +11,14 @@
                 <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
             </div>
         </div>
-        <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 flex items-center justify-center">
+        <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 flex items-center justify-center mb-4">
             <span class="text-2xl font-bold">Welcome, Recruiter!</span>
+        </div>
+        <div class="my-4">
+            <livewire:recruiter.job-manager />
+        </div>
+        <div class="my-4">
+            <livewire:recruiter.assign-job />
         </div>
     </div>
 </x-app-layout> 

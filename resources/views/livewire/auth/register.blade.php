@@ -7,7 +7,7 @@
     <form wire:submit="register" class="flex flex-col gap-6">
         <!-- Name -->
         <flux:input
-            wire:model="name"
+            wire:model.live="name"
             :label="__('Name')"
             type="text"
             required
@@ -18,7 +18,7 @@
 
         <!-- Email Address -->
         <flux:input
-            wire:model="email"
+            wire:model.live="email"
             :label="__('Email address')"
             type="email"
             required
@@ -29,7 +29,7 @@
         <!-- User Type -->
         <div>
             <label for="user_type" class="block text-sm font-medium text-gray-700">{{ __('Register as') }}</label>
-            <select id="user_type" wire:model="user_type" class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-white text-black">
+            <select id="user_type" wire:model.live="user_type" class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-white text-black">
                 <option value="cleaner">{{ __('Cleaner') }}</option>
                 <option value="recruiter">{{ __('Recruiter') }}</option>
             </select>
@@ -38,7 +38,7 @@
 
         <!-- Password -->
         <flux:input
-            wire:model="password"
+            wire:model.live="password"
             :label="__('Password')"
             type="password"
             required
@@ -49,7 +49,7 @@
 
         <!-- Confirm Password -->
         <flux:input
-            wire:model="password_confirmation"
+            wire:model.live="password_confirmation"
             :label="__('Confirm password')"
             type="password"
             required
